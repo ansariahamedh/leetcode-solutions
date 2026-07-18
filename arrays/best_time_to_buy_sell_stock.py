@@ -1,20 +1,15 @@
-# Brute force O(n²)
-class SolutionBrute(object):
-    def maxProfit(self,prices):
-        maxProfit = 0
-        for i in range(len(prices)):
-            for j in range(i+1, len(prices)):
-                if prices[j] - prices[i] > maxProfit:
-                    maxProfit = prices[j] - prices[i]
-        return maxProfit
-# Optimal hashmap O(n)
-class SolutionOptimal(object):
-    def maxProfit(self,prices):
-        minPrice = float('inf')
-        maxProfit = 0
-        for price in prices:
-            if price < minPrice:
-                minPrice = price
-            if price - minPrice > maxProfit:
-                maxProfit = price - minPrice
-        return maxProfit
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        min_price = float('inf')
+        max_profit = 0
+
+        for num in prices:
+            if num < min_price:
+                min_price = num
+            elif num - min_price > max_profit:
+                max_profit = num - min_price
+        return max_profit
